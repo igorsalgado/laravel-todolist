@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->date('due_date')->nullable();
             $table->boolean('status')->default(false);
-            $table->dateTime('completed_at')->nullable();
+            $table->date('completed_at')->nullable();
             $table->timestamps();
         });
     }
