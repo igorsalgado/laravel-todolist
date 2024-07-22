@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\V1\Task\StoreTaskRequest;
+use App\Http\Requests\Api\V1\Task\UpdateTaskRequest;
 use App\Http\Resources\Api\V1\Task\TaskResource;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -15,24 +17,20 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Auth::user()->tasks;
+        $tasks = Task::query()->where('user_id', Auth::id())->get();
         return TaskResource::collection($tasks);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $task = Task::create($request->validated());
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
+        $task = Task::create($validated);
+
+        return new TaskResource($task);
     }
 
     /**
@@ -40,23 +38,22 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'Não autorizado');
+        }
+        return new TaskResource($task);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest  $request, Task $task)
     {
-        //
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'Não autorizado');
+        }
+        $task->update($request->validated());
+        return new TaskResource($task);
     }
 
     /**
@@ -64,6 +61,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'Não autorizado');
+        }
+        $task->delete();
+
+        return response(null, 204);
     }
 }

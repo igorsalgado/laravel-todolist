@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api\V1\Task;
 
+use App\Http\Resources\Api\V1\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,11 +17,12 @@ class TaskResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user' => new UserResource($this->whenLoaded('user')),
             'title' => $this->title,
             'description' => $this->description,
             'due_date' => $this->due_date,
-            'completed' => $this->completed, // Send the completed status
-            'completed_at' => $this->completed_at, // Send the completion timestamp
+            'status' => $this->status,
+            'completed_at' => $this->completed_at,
         ];
     }
 }
