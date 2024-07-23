@@ -75,7 +75,7 @@ class TaskController extends Controller
             abort(403, 'Unauthorized');
         }
 
-        $task->update(['completed' => true]);
+        $task->update(['status' => true]);
         return new TaskResource($task);
     }
 }
