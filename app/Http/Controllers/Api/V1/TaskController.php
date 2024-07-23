@@ -68,4 +68,14 @@ class TaskController extends Controller
 
         return response(null, 204);
     }
+
+    public function complete(Task $task)
+    {
+        if ($task->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        $task->update(['completed' => true]);
+        return new TaskResource($task);
+    }
 }

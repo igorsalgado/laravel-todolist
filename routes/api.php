@@ -29,4 +29,5 @@ Route::prefix('v1')->group(function () {
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('tasks', TaskController::class);
+    Route::patch('/tasks/{task}/complete', [TaskController::class, 'complete']);
 });
