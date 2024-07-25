@@ -4,9 +4,10 @@ import Login from '../components/user/Login.vue';
 import Register from '../components/user/Register.vue';
 
 const routes = [
-    { path: '/tasks', component: TaskList },
+    { path: '/', redirect: '/login' },
     { path: '/login', component: Login },
     { path: '/register', component: Register },
+    { path: '/tasks', component: TaskList },
 ];
 
 const router = createRouter({
