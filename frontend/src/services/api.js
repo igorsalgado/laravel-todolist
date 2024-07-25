@@ -13,4 +13,29 @@ api.interceptors.request.use(config => {
     return config;
 });
 
-export default api;
+// Criar tarefa
+export const createTask = async (task) => {
+    return api.post('/tasks', task);
+};
+
+// Atualizar tarefa
+export const updateTask = async (taskId, task) => {
+    return api.put(`/tasks/${taskId}`, task);
+};
+
+// Completar tarefa
+export const completeTask = async (taskId) => {
+    return api.patch(`/tasks/${taskId}/complete`);
+};
+
+// Deletar tarefa
+export const deleteTask = async (taskId) => {
+    return api.delete(`/tasks/${taskId}`);
+};
+
+// Listar tarefas
+export const getTasks = async () => {
+    return api.get('/tasks');
+};
+
+export default api; // Exporta o `api` como padrão

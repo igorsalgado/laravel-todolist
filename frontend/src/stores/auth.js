@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import api from '../services/api';
+import api from '@/services/api.js';
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const response = await api.post('/login', credentials);
                 this.user = response.data.data;
-                this.token = response.data.token;
+                this.token = response.data.access_token;
                 this.isAuthenticated = true;
                 localStorage.setItem('token', this.token);
             } catch (error) {
@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const response = await api.post('/register', form);
                 this.user = response.data.data;
-                this.token = response.data.token;
+                this.token = response.data.access_token;
                 this.isAuthenticated = true;
                 localStorage.setItem('token', this.token);
             } catch (error) {
