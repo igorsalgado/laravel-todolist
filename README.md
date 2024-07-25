@@ -1,66 +1,134 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API de Gerenciamento de Tarefas com Laravel e Vue.js
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este projeto é uma aplicação web completa para gerenciamento de tarefas, construída com Laravel 10 para o backend e Vue.js 3 para o frontend. Ele permite que usuários autenticados criem, visualizem, editem, excluam e marquem suas tarefas como concluídas.
 
-## About Laravel
+## Funcionalidades Principais
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Backend (Laravel):
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Autenticação:**
+    - Registro de novos usuários com validação de dados.
+    - Login seguro com tokens Sanctum.
+    - Logout para encerrar a sessão do usuário.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Gerenciamento de Tarefas (CRUD):**
+    - Criar novas tarefas com título, descrição e data de vencimento (opcional).
+    - Listar todas as tarefas do usuário autenticado.
+    - Visualizar os detalhes de uma tarefa específica.
+    - Editar tarefas existentes.
+    - Excluir tarefas.
+    - Marcar tarefas como concluídas, atualizando automaticamente a data de conclusão.
 
-## Learning Laravel
+- **Validação:**
+    - Utiliza Form Requests para validar os dados de entrada das requisições.
+    - Validação customizada para garantir que a data de vencimento seja uma data futura.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Recursos (Resources):**
+    - Formatação das respostas da API em um formato consistente e legível.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Testes:**
+    - Testes de funcionalidades (Feature Tests) com PEST para garantir o funcionamento correto das rotas de autenticação e tarefas.
+    - Testes de autorização para garantir que os usuários só possam acessar e modificar suas próprias tarefas.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Documentação da API:**
+    - Geração automática da documentação da API utilizando o Laravel Request Docs.
 
-## Laravel Sponsors
+### Frontend (Vue.js):
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Componentes:**
+    - `Login`: Formulário de login.
+    - `Register`: Formulário de registro.
+    - `TaskList`: Componente principal para listar e gerenciar tarefas.
+    - `TaskItem`: Componente para exibir cada tarefa individualmente.
+    - `TaskForm`: Componente para criar e editar tarefas (modal).
 
-### Premium Partners
+- **Roteamento:**
+    - Vue Router para navegação entre as páginas de login, registro e lista de tarefas.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Gerenciamento de Estado:**
+    - Pinia para gerenciar o estado de autenticação do usuário e as tarefas.
 
-## Contributing
+- **Consumo da API:**
+    - Axios para fazer requisições à API Laravel.
+    - Arquivo `api.js` para centralizar a configuração do Axios e gerenciar o token de autenticação.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Estilização:**
+    - Bootstrap 5 para a estrutura básica e estilos dos componentes.
+    - Arquivo CSS personalizado (`base.css`) para estilos adicionais.
 
-## Code of Conduct
+## Pré-requisitos
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- PHP >= 8.1
+- Composer
+- Node.js e npm
+- MySQL (ou outro banco de dados compatível com o Laravel)
 
-## Security Vulnerabilities
+## Instalação e Execução
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Backend:
 
-## License
+1. Clone o repositório:
+   ```bash
+   git clone <repositorio>
+   ```
+2. Instale as dependências do PHP:
+   ```bash
+   composer install
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+3. Crie o arquivo .env a partir do .env.example:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Configure as variáveis de ambiente no .env (banco de dados, etc.).
+
+5. Gere a chave da aplicação:
+   ```bash
+   php artisan key:generate
+   ```
+
+6. Execute as migrations:
+   ```bash
+   php artisan migrate
+   ```
+
+7. Inicie o servidor de desenvolvimento:
+   ```bash
+   php artisan serve
+   ```
+
+### Frontend:
+
+1. Gere a chave da aplicação:
+   ```bash
+   cd frontend
+   ```
+
+2. Execute as migrations:
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+## Acesso à Documentação da API
+
+Acesse [http://localhost:8000/request-docs](http://localhost:8000/request-docs) (ou a URL da sua aplicação) para visualizar a documentação da API gerada pelo Laravel Request Docs.
+
+## Testes
+
+1. Para executar os testes do backend (PEST), volte para a pasta raiz do projeto e execute:
+   ```bash
+    cd ..
+    ./vendor/bin/pest
+   ```
+
+Com essas instruções, os usuários poderão configurar e executar tanto o backend quanto o frontend, além de acessar a documentação da API e executar os testes necessários. Se precisar de mais ajustes ou informações, sinta-se à vontade para perguntar!
+
+
+
+
