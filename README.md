@@ -71,7 +71,7 @@ Este projeto é uma aplicação web completa para gerenciamento de tarefas, cons
 
 1. Clone o repositório:
    ```bash
-   git clone <repositorio>
+   git clone https://github.com/igorsalgado/laravel-todolist.git
    ```
 2. Instale as dependências do PHP:
    ```bash
