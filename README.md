@@ -38,6 +38,7 @@ Este projeto é uma aplicação web completa para gerenciamento de tarefas, cons
 - **Componentes:**
     - `Login`: Formulário de login.
     - `Register`: Formulário de registro.
+    - `Logout`: Componente para deslogar usuário.
     - `TaskList`: Componente principal para listar e gerenciar tarefas.
     - `TaskItem`: Componente para exibir cada tarefa individualmente.
     - `TaskForm`: Componente para criar e editar tarefas (modal).
@@ -59,6 +60,7 @@ Este projeto é uma aplicação web completa para gerenciamento de tarefas, cons
 ## Pré-requisitos
 
 - PHP >= 8.1
+- Laravel 10
 - Composer
 - Node.js e npm
 - MySQL (ou outro banco de dados compatível com o Laravel)
