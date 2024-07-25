@@ -1,0 +1,19 @@
+.task-list {
+    padding: 20px;
+}
+.task-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.task-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+.task-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
